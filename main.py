@@ -56,7 +56,7 @@ device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print("Using device:", device)
 
 # instance of model
-model = TorchModel(input_shape=(256, 251, 2),num_classes=num_classes).to(device)
+model = TorchModel(input_shape=(128, 173, 1),num_classes=num_classes).to(device)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)

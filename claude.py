@@ -1,49 +1,11 @@
+import os
 import pandas as pd
-
-import torchaudio
 import torch
-from torch.utils.data import Dataset
-from torchaudio.transforms import Spectrogram, MelSpectrogram, MFCC
-from typing import List, Union
-from pathlib import Path
-
-class UrbanSoundDataset(Dataset):
-    def __init__(self, dataset_dir: Union[str, Path], folds: List[int], sample_rate = 16000)-> None:
-        self.dataset_dir = Path(dataset_dir)
-        self.folds = folds
-        self.target_sample_rate = sample_rate
-        self.metadata = self.__load_metadata()
-        
-    def __len__(self):
-        return len(self.metadata)
-
-    def __getitem__(self,idx):
-        """
-        Get examlple from dataset ad ID 'idx'.
-        Return preprocessed example an its lable 
-
-        """
-        row = self.metadata.iloc[idx]
-        audio_path = self.dataset_dir / f"fold{row['fold']}" / row['slice_file_name']
-
-        # this loads audio example in memory
-        waveform, sample_rate = torchaudio.load(audio_path) #[channels, samples]
-
-        mel_spectrogram=self.preprocess_waveform(waveform=waveform, sample_rate=sample_rate)
-        label = row['classID']
-
-        return mel_spectrogram, label
-
-    def __load_metadata(self):
-        metadata_file_path = self.dataset_dir / "UrbanSound8K.csv"
-        df = pd.read_csv(metadata_file_path)
-        df = df[df['fold'].isin(self.folds)]
-        return df
+import torchaudio
+import matplotlib.pyplot as plt
 
 
-
-    def preprocess_waveform(
-            self,
+def preprocess_waveform(
         waveform: torch.Tensor,
         sample_rate: int,
         target_sample_rate: int = 22050,
@@ -78,7 +40,7 @@ class UrbanSoundDataset(Dataset):
             waveform = torch.nn.functional.pad(waveform, (0, pad_len))
         else:
             waveform = waveform[:, :max_len]
-        
+
         # 3. Gestione canali
         if waveform.shape[0] == 1:
             waveform = waveform.repeat(2, 1)  # duplica mono → stereo
@@ -101,8 +63,61 @@ class UrbanSoundDataset(Dataset):
         mel_db = (mel_spectrogram_db - mel_spectrogram_db.min()) / (mel_spectrogram_db.max() - mel_spectrogram_db.min())
 
         # 7. Usa solo un canale → (1, n_mels, time)
-        mel_db = mel_db.mean(dim=0, keepdim=True)
+        mel_db = mel_db[0:1, :, :]
 
         return mel_db
 
+# Parametri dataset
+metadata_file = "./dataset/UrbanSound8K.csv"
+audio_dir = "./dataset"
+target_class = "drilling"#"car_horn"#"gun_shot"#"jackhammer"#"engine_idling"#"siren"#"street_music"#"children_playing"#"air_conditioner"#"dog_bark"   # Cambia qui la classe che vuoi visualizzare
+target_sample_rate = 22050
 
+# Parametri spettrogramma
+n_fft = 1024
+hop_length = 512
+n_mels = 64
+
+# Trasformazione MelSpectrogram
+mel_transform = torchaudio.transforms.MelSpectrogram(
+    sample_rate=target_sample_rate,
+    n_fft=n_fft,
+    hop_length=hop_length,
+    n_mels=n_mels,
+    window_fn=torch.hann_window,
+    f_max=8000,
+    f_min=20,
+)
+
+def plot_mel_spectrogram(spec, title, subplot_idx, total_plots):
+    plt.subplot(2, 5, subplot_idx)  # 10 fold → 2 righe x 5 colonne
+    plt.imshow(spec.log2()[0,:,:].numpy(), cmap='magma', origin='lower', aspect='auto')
+    plt.title(title)
+    plt.axis("off")
+
+def main():
+    metadata = pd.read_csv(metadata_file)
+
+    plt.figure(figsize=(20, 8))
+    
+    for fold in range(1, 11):
+        # Trova una riga con la classe target in questo fold
+        row = metadata[(metadata["fold"] == fold) & (metadata["class"] == target_class)].iloc[0]
+        audio_path = os.path.join(audio_dir, f"fold{fold}", row["slice_file_name"])
+
+        # Carica audio
+        waveform, sr = torchaudio.load(audio_path)
+        
+
+        # Spettrogramma mel
+        mel_spec = preprocess_waveform(waveform=waveform,sample_rate=sr)
+        
+        # Plot
+        plot_mel_spectrogram(mel_spec, f"Fold {fold}", fold, 10)
+
+    plt.suptitle(f"Mel-spectrograms della classe '{target_class}' per ogni fold")
+    plt.tight_layout()
+    plt.show()
+
+if __name__ == "__main__":
+    main()
