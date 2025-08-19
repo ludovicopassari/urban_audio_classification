@@ -9,37 +9,50 @@ class TorchModel(nn.Module):
         # Numero di canali in input
         in_channels = input_shape[2]
         
-        # Convolutional layers
-        self.features = nn.Sequential(
-            nn.Conv2d(in_channels=in_channels, out_channels=32, kernel_size=3, padding=1),
+        # Primo blocco convoluzionale
+        self.conv1 = nn.Sequential(
+            nn.Conv2d(2, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            
-            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Dropout(0.25),
-            
-            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Dropout(0.25),
-
-            
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2),  # Riduce dimensioni di 2x
+            nn.Dropout2d(0.1)
         )
         
-        # Calcolo dinamico della dimensione dopo i convoluzionali
-        #self.flattened_size = self._get_conv_output(input_shape)
-        self.global_pool = nn.AdaptiveAvgPool2d((1,1))
-
-        # fully connected layer
+        # Secondo blocco convoluzionale
+        self.conv2 = nn.Sequential(
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2),
+            nn.Dropout2d(0.1)
+        )
+        
+        # Terzo blocco convoluzionale
+        self.conv3 = nn.Sequential(
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2),
+            nn.Dropout2d(0.2)
+        )
+        
+        # Quarto blocco convoluzionale
+        self.conv4 = nn.Sequential(
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2),
+            nn.Dropout2d(0.2)
+        )
+        
+        # Global Average Pooling per ridurre parametri
+        self.global_avg_pool = nn.AdaptiveAvgPool2d(1)
+        
+        # Classifier
         self.classifier = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(64, 128),
-            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(256, 128),
+            nn.ReLU(inplace=True),
             nn.Dropout(0.3),
             nn.Linear(128, num_classes)
         )
@@ -51,12 +64,18 @@ class TorchModel(nn.Module):
         return output.numel() // output.shape[0]  # dimensione per batch
     
     def forward(self, x):
-        # Se input in formato TF (batch, H, W, C), converte in (batch, C, H, W)
-        if x.ndim == 4 and x.shape[-1] == self.features[0].in_channels:
-            x = x.permute(0, 3, 1, 2)
         
-        x = self.features(x)
-        x = self.global_pool(x)
-        x = self.classifier(x)
+        # Input: (batch_size, 1, n_mels, time_steps)
+        x = self.conv1(x)    # (batch_size, 32, n_mels/2, time_steps/2)
+        x = self.conv2(x)    # (batch_size, 64, n_mels/4, time_steps/4)
+        x = self.conv3(x)    # (batch_size, 128, n_mels/8, time_steps/8)
+        x = self.conv4(x)    # (batch_size, 256, n_mels/16, time_steps/16)
+        
+        # Global Average Pooling
+        x = self.global_avg_pool(x)  # (batch_size, 256, 1, 1)
+        x = x.view(x.size(0), -1)    # (batch_size, 256)
+        
+        # Classification
+        x = self.classifier(x)       # (batch_size, n_classes)
         return x
 

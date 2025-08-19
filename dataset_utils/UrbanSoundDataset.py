@@ -7,65 +7,58 @@ from torchaudio.transforms import Spectrogram, MelSpectrogram, MFCC
 from typing import List, Union
 from pathlib import Path
 
+
 class UrbanSoundDataset(Dataset):
-    def __init__(self, dataset_dir: Union[str, Path], folds: List[int], sample_rate = 16000)-> None:
+    def __init__(self, dataset_dir: str, 
+                folds: List[int], 
+                sample_rate:int=16000,
+                max_duration:float = 4.0, 
+                train:bool=False )-> None:
+        
         self.dataset_dir = Path(dataset_dir)
         self.folds = folds
-        self.target_sample_rate = sample_rate
+        self.sample_rate = sample_rate
         self.metadata = self.__load_metadata()
+        self.train = train
+
         
     def __len__(self):
         return len(self.metadata)
 
     def __getitem__(self,idx):
-        """
-        Get examlple from dataset ad ID 'idx'.
-        Return preprocessed example an its lable 
 
-        """
         row = self.metadata.iloc[idx]
         audio_path = self.dataset_dir / f"fold{row['fold']}" / row['slice_file_name']
 
         # this loads audio example in memory
         waveform, sample_rate = torchaudio.load(audio_path) #[channels, samples]
-
-        mel_spectrogram=self.preprocess_waveform(waveform=waveform, sample_rate=sample_rate)
         label = row['classID']
 
-        return mel_spectrogram, label
+        if waveform.shape[0] > 1:
+            waveform = waveform.mean(dim=0, keepdim=True) 
+
+        spec = self.__preprocess_waveform(waveform, sample_rate, n_fft=2048)
+
+        return spec, label
 
     def __load_metadata(self):
         metadata_file_path = self.dataset_dir / "UrbanSound8K.csv"
         df = pd.read_csv(metadata_file_path)
         df = df[df['fold'].isin(self.folds)]
         return df
+    
+    def __load_audio(self, path:str):
+        pass
 
-
-
-    def preprocess_waveform(
-            self,
+    def __preprocess_waveform(self,
         waveform: torch.Tensor,
         sample_rate: int,
         target_sample_rate: int = 22050,
         duration: int = 4,
         n_fft: int = 1024,
         hop_length: int = 512,
-        n_mels: int = 128
-    ):
-        """
-        Applica il preprocessing a un tensore waveform.
-        
-        Args:
-            waveform: torch.Tensor di forma (channels, samples)
-            sample_rate: frequenza di campionamento originale
-            target_sample_rate: frequenza target per il resampling
-            duration: durata massima in secondi
-            n_fft, hop_length, n_mels: parametri per MelSpectrogram
-        
-        Returns:
-            mel_db: torch.Tensor di forma (1, n_mels, time) normalizzato
-        """
-        
+        n_mels: int = 128):  
+
         # 1. Resample se necessario
         if sample_rate != target_sample_rate:
             resampler = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=target_sample_rate)
@@ -91,7 +84,7 @@ class UrbanSoundDataset(Dataset):
             n_fft=n_fft,
             hop_length=hop_length,
             n_mels=n_mels,
-            window_fn=torch.hann_window
+            window_fn=torch.hann_window,
         )(waveform)
 
         # 5. Log-scaling
@@ -100,9 +93,7 @@ class UrbanSoundDataset(Dataset):
         # 6. Normalizzazione [0,1]
         mel_db = (mel_spectrogram_db - mel_spectrogram_db.min()) / (mel_spectrogram_db.max() - mel_spectrogram_db.min())
 
-        # 7. Usa solo un canale → (1, n_mels, time)
-        mel_db = mel_db.mean(dim=0, keepdim=True)
+        
 
         return mel_db
-
-
+    

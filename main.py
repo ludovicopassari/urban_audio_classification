@@ -22,24 +22,6 @@ learning_rate = 0.001
 num_epochs = 28
 weight_decay = 1e-4
 
-log_dir = "logs"
-os.makedirs(log_dir, exist_ok=True)
-
-# Nome file log
-log_file = os.path.join(log_dir, "training.log")
-
-# Configurazione logging
-logging.basicConfig(
-    level=logging.INFO,  # INFO, DEBUG, WARNING, ERROR
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler(log_file),  # salva su file
-        logging.StreamHandler()         # mostra a video
-    ]
-)
-
-logger = logging.getLogger()
-
 #base dataset dir
 dataset_dir = Path("dataset")
 
@@ -56,13 +38,99 @@ device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print("Using device:", device)
 
 # instance of model
-model = TorchModel(input_shape=(128, 173, 1),num_classes=num_classes).to(device)
+model = TorchModel(input_shape=(128, 173, 2),num_classes=num_classes)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
 
-def train_model(model, train_loader, test_loader, criterion, optimizer, device, num_epochs=50, patience=5):
+
+def train_loop(dataloader, model, loss_fn, optimizer):
+    pass
+
+def train_model(model, train_loader, val_loader, num_epochs=50, learning_rate=0.001):
+    """Funzione di training del modello"""
+    size = len(train_loader.dataset)
+    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    model.to(device)
+    
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-4)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=5, factor=0.5)
+    
+    best_val_acc = 0.0
+    
+    for epoch in range(num_epochs):
+        # Training
+        model.train()
+        train_loss = 0.0
+        train_correct = 0
+        train_total = 0
+        
+        for batch_idx, (data, targets) in enumerate(train_loader):
+            data, targets = data.to(device), targets.to(device)
+
+            # this reset the gradients of model params
+            optimizer.zero_grad()
+            #this forward input throwgh model
+            outputs = model(data)
+            #compute loss
+            loss = criterion(outputs, targets)
+
+            #compute gradient's params based on loss_function
+            loss.backward()
+            #update model's params
+            optimizer.step()
+            
+            train_loss += loss.item()
+            _, predicted = torch.max(outputs.data, 1)
+            train_total += targets.size(0)
+            train_correct += (predicted == targets).sum().item()
+
+            if batch_idx % 100 == 0:
+                loss, current = loss.item(), batch_idx * batch_size + len(data)
+                print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+        
+        train_acc = 100 * train_correct / train_total
+        
+        # Validation
+        model.eval()
+        val_loss = 0.0
+        val_correct = 0
+        val_total = 0
+        
+        with torch.no_grad():
+            for data, targets in val_loader:
+                data, targets = data.to(device), targets.to(device)
+                outputs = model(data)
+                loss = criterion(outputs, targets)
+                
+                val_loss += loss.item()
+                _, predicted = torch.max(outputs.data, 1)
+                val_total += targets.size(0)
+                val_correct += (predicted == targets).sum().item()
+        
+        val_acc = 100 * val_correct / val_total
+        
+        # Scheduler step
+        scheduler.step(val_loss)
+        
+        print(f'Epoch [{epoch+1}/{num_epochs}]')
+        print(f'Train Loss: {train_loss/len(train_loader):.4f}, Train Acc: {train_acc:.2f}%')
+        print(f'Val Loss: {val_loss/len(val_loader):.4f}, Val Acc: {val_acc:.2f}%')
+        print('-' * 50)
+        
+        # Save best model
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            torch.save(model.state_dict(), 'best_audio_classifier.pth')
+    
+    return model
+
+
+
+
+""" def train_model(model, train_loader, test_loader, criterion, optimizer, device, num_epochs=50, patience=5):
 
     best_test_loss = float("inf")
     patience_counter = 0
@@ -135,12 +203,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, device, 
         
         logger.warning(f"[Test Epoch Resume] Epoch [{epoch+1}/{num_epochs}] Test Loss: {avg_test_loss:.4f}, Accuracy: {accuracy:.2f}%")
 
-    logger.warning("Training Ended.")
+    logger.warning("Training Ended.") """
 
-history = train_model(model, train_loader, test_loader, criterion, optimizer, device, num_epochs=50, patience=7)
+model = train_model(model, train_loader, test_loader,num_epochs=50)
 
-logger.info(f"History : {history}")
-
-# Crea DataFrame
-df = pd.DataFrame(history)
-df.to_csv("training_history.csv", index=False)
