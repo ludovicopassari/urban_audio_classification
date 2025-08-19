@@ -1,0 +1,430 @@
+2025-08-18 11:50:14,412 - WARNING - [Training Epoch Resume] Epoch [1/50] Training Loss: 1.7888
+2025-08-18 11:50:26,835 - WARNING - [Test Epoch Resume] Epoch [1/50] Test Loss: 1.3351, Accuracy: 51.25%
+
+2025-08-18 11:53:28,003 - WARNING - [Training Epoch Resume] Epoch [2/50] Training Loss: 1.4408
+2025-08-18 11:53:39,331 - WARNING - [Test Epoch Resume] Epoch [2/50] Test Loss: 1.7373, Accuracy: 32.02%
+
+2025-08-18 11:56:40,766 - WARNING - [Training Epoch Resume] Epoch [3/50] Training Loss: 1.2455
+2025-08-18 11:56:52,482 - WARNING - [Test Epoch Resume] Epoch [3/50] Test Loss: 1.2322, Accuracy: 53.88%
+
+2025-08-18 11:59:54,772 - WARNING - [Training Epoch Resume] Epoch [4/50] Training Loss: 1.1308
+2025-08-18 12:00:06,235 - WARNING - [Test Epoch Resume] Epoch [4/50] Test Loss: 1.0220, Accuracy: 63.08%
+
+2025-08-18 12:03:07,931 - WARNING - [Training Epoch Resume] Epoch [5/50] Training Loss: 1.0604
+2025-08-18 12:03:19,653 - WARNING - [Test Epoch Resume] Epoch [5/50] Test Loss: 0.9455, Accuracy: 65.95%
+
+2025-08-18 12:06:21,757 - WARNING - [Training Epoch Resume] Epoch [6/50] Training Loss: 0.9938
+2025-08-18 12:06:33,372 - WARNING - [Test Epoch Resume] Epoch [6/50] Test Loss: 1.0870, Accuracy: 62.96%
+
+2025-08-18 12:09:35,867 - WARNING - [Training Epoch Resume] Epoch [7/50] Training Loss: 0.9247
+2025-08-18 12:09:47,590 - WARNING - [Test Epoch Resume] Epoch [7/50] Test Loss: 0.9269, Accuracy: 64.16%
+
+2025-08-18 12:12:50,237 - WARNING - [Training Epoch Resume] Epoch [8/50] Training Loss: 0.8839
+2025-08-18 12:13:02,017 - WARNING - [Test Epoch Resume] Epoch [8/50] Test Loss: 0.9160, Accuracy: 66.79%
+
+2025-08-18 12:16:03,882 - WARNING - [Training Epoch Resume] Epoch [9/50] Training Loss: 0.8600
+2025-08-18 12:16:15,558 - WARNING - [Test Epoch Resume] Epoch [9/50] Test Loss: 0.9947, Accuracy: 61.05%
+
+2025-08-18 12:19:16,990 - WARNING - [Training Epoch Resume] Epoch [10/50] Training Loss: 0.8135
+2025-08-18 12:19:28,852 - WARNING - [Test Epoch Resume] Epoch [10/50] Test Loss: 1.1485, Accuracy: 63.08%
+
+2025-08-18 12:22:30,772 - WARNING - [Training Epoch Resume] Epoch [11/50] Training Loss: 0.7853
+2025-08-18 12:22:42,514 - WARNING - [Test Epoch Resume] Epoch [11/50] Test Loss: 0.9361, Accuracy: 66.55%
+
+2025-08-18 12:25:47,064 - WARNING - [Training Epoch Resume] Epoch [12/50] Training Loss: 0.7357
+2025-08-18 12:25:58,827 - WARNING - [Test Epoch Resume] Epoch [12/50] Test Loss: 0.8458, Accuracy: 72.64%
+
+2025-08-18 12:29:02,781 - WARNING - [Training Epoch Resume] Epoch [13/50] Training Loss: 0.7192
+2025-08-18 12:29:14,385 - WARNING - [Test Epoch Resume] Epoch [13/50] Test Loss: 0.9994, Accuracy: 69.41%
+
+2025-08-18 12:32:17,270 - WARNING - [Training Epoch Resume] Epoch [14/50] Training Loss: 0.6722
+2025-08-18 12:32:29,194 - WARNING - [Test Epoch Resume] Epoch [14/50] Test Loss: 0.9660, Accuracy: 64.76%
+
+2025-08-18 12:35:32,792 - WARNING - [Training Epoch Resume] Epoch [15/50] Training Loss: 0.6735
+2025-08-18 12:35:44,438 - WARNING - [Test Epoch Resume] Epoch [15/50] Test Loss: 0.8503, Accuracy: 69.18%
+
+2025-08-18 12:38:47,230 - WARNING - [Training Epoch Resume] Epoch [16/50] Training Loss: 0.6335
+2025-08-18 12:38:58,979 - WARNING - [Test Epoch Resume] Epoch [16/50] Test Loss: 0.9530, Accuracy: 68.58%
+
+2025-08-18 12:42:01,649 - WARNING - [Training Epoch Resume] Epoch [17/50] Training Loss: 0.6208
+2025-08-18 12:42:13,256 - WARNING - [Test Epoch Resume] Epoch [17/50] Test Loss: 1.0173, Accuracy: 66.67%
+2025-08-19 15:16:32,254 - INFO - Start Training. lr=0.001 weight_decay= 0.0001
+2025-08-19 15:16:34,268 - INFO - [Train] Epoch [1/50], Batch [0], Loss: 2.2686
+2025-08-19 15:16:35,655 - INFO - [Train] Epoch [1/50], Batch [10], Loss: 2.2240
+2025-08-19 15:16:48,105 - INFO - Start Training. lr=0.001 weight_decay= 0.0001
+2025-08-19 15:16:48,772 - INFO - [Train] Epoch [1/50], Batch [0], Loss: 2.2623
+2025-08-19 15:16:50,123 - INFO - [Train] Epoch [1/50], Batch [10], Loss: 2.1589
+2025-08-19 15:16:51,420 - INFO - [Train] Epoch [1/50], Batch [20], Loss: 1.8758
+2025-08-19 15:16:52,660 - INFO - [Train] Epoch [1/50], Batch [30], Loss: 2.5196
+2025-08-19 15:16:54,066 - INFO - [Train] Epoch [1/50], Batch [40], Loss: 2.2439
+2025-08-19 15:16:55,195 - INFO - [Train] Epoch [1/50], Batch [50], Loss: 2.2083
+2025-08-19 15:16:56,437 - INFO - [Train] Epoch [1/50], Batch [60], Loss: 2.2830
+2025-08-19 15:16:57,777 - INFO - [Train] Epoch [1/50], Batch [70], Loss: 2.1875
+2025-08-19 15:16:59,205 - INFO - [Train] Epoch [1/50], Batch [80], Loss: 1.8326
+2025-08-19 15:17:00,517 - INFO - [Train] Epoch [1/50], Batch [90], Loss: 2.0845
+2025-08-19 15:17:01,802 - INFO - [Train] Epoch [1/50], Batch [100], Loss: 3.0544
+2025-08-19 15:17:03,071 - INFO - [Train] Epoch [1/50], Batch [110], Loss: 2.3833
+2025-08-19 15:17:04,416 - INFO - [Train] Epoch [1/50], Batch [120], Loss: 2.0471
+2025-08-19 15:17:05,675 - INFO - [Train] Epoch [1/50], Batch [130], Loss: 2.1720
+2025-08-19 15:17:06,991 - INFO - [Train] Epoch [1/50], Batch [140], Loss: 1.6116
+2025-08-19 15:17:08,241 - INFO - [Train] Epoch [1/50], Batch [150], Loss: 2.1713
+2025-08-19 15:17:09,583 - INFO - [Train] Epoch [1/50], Batch [160], Loss: 1.9025
+2025-08-19 15:17:11,014 - INFO - [Train] Epoch [1/50], Batch [170], Loss: 1.3612
+2025-08-19 15:17:12,301 - INFO - [Train] Epoch [1/50], Batch [180], Loss: 2.0212
+2025-08-19 15:17:13,562 - INFO - [Train] Epoch [1/50], Batch [190], Loss: 1.9729
+2025-08-19 15:17:14,969 - INFO - [Train] Epoch [1/50], Batch [200], Loss: 2.2992
+2025-08-19 15:17:16,293 - INFO - [Train] Epoch [1/50], Batch [210], Loss: 1.7915
+2025-08-19 15:17:17,612 - INFO - [Train] Epoch [1/50], Batch [220], Loss: 2.8743
+2025-08-19 15:17:18,861 - INFO - [Train] Epoch [1/50], Batch [230], Loss: 1.9454
+2025-08-19 15:17:20,191 - INFO - [Train] Epoch [1/50], Batch [240], Loss: 2.4435
+2025-08-19 15:17:21,508 - INFO - [Train] Epoch [1/50], Batch [250], Loss: 2.1133
+2025-08-19 15:17:22,834 - INFO - [Train] Epoch [1/50], Batch [260], Loss: 1.7963
+2025-08-19 15:17:24,131 - INFO - [Train] Epoch [1/50], Batch [270], Loss: 1.9547
+2025-08-19 15:17:25,424 - INFO - [Train] Epoch [1/50], Batch [280], Loss: 1.7369
+2025-08-19 15:17:26,785 - INFO - [Train] Epoch [1/50], Batch [290], Loss: 2.2569
+2025-08-19 15:17:28,136 - INFO - [Train] Epoch [1/50], Batch [300], Loss: 2.1862
+2025-08-19 15:17:29,335 - INFO - [Train] Epoch [1/50], Batch [310], Loss: 3.2022
+2025-08-19 15:17:30,644 - INFO - [Train] Epoch [1/50], Batch [320], Loss: 1.5116
+2025-08-19 15:17:32,040 - INFO - [Train] Epoch [1/50], Batch [330], Loss: 2.0437
+2025-08-19 15:17:33,447 - INFO - [Train] Epoch [1/50], Batch [340], Loss: 2.2867
+2025-08-19 15:17:34,953 - INFO - [Train] Epoch [1/50], Batch [350], Loss: 1.7799
+2025-08-19 15:17:36,339 - INFO - [Train] Epoch [1/50], Batch [360], Loss: 1.8728
+2025-08-19 15:17:37,596 - INFO - [Train] Epoch [1/50], Batch [370], Loss: 1.6096
+2025-08-19 15:17:38,977 - INFO - [Train] Epoch [1/50], Batch [380], Loss: 2.2486
+2025-08-19 15:17:40,240 - INFO - [Train] Epoch [1/50], Batch [390], Loss: 2.3098
+2025-08-19 15:17:41,585 - INFO - [Train] Epoch [1/50], Batch [400], Loss: 2.0064
+2025-08-19 15:17:43,005 - INFO - [Train] Epoch [1/50], Batch [410], Loss: 1.5285
+2025-08-19 15:17:44,301 - INFO - [Train] Epoch [1/50], Batch [420], Loss: 2.3226
+2025-08-19 15:17:45,595 - INFO - [Train] Epoch [1/50], Batch [430], Loss: 1.5323
+2025-08-19 15:17:46,898 - INFO - [Train] Epoch [1/50], Batch [440], Loss: 2.2031
+2025-08-19 15:17:48,143 - INFO - [Train] Epoch [1/50], Batch [450], Loss: 1.4701
+2025-08-19 15:17:49,363 - INFO - [Train] Epoch [1/50], Batch [460], Loss: 1.1442
+2025-08-19 15:17:50,669 - INFO - [Train] Epoch [1/50], Batch [470], Loss: 2.7820
+2025-08-19 15:17:52,006 - INFO - [Train] Epoch [1/50], Batch [480], Loss: 1.8946
+2025-08-19 15:17:53,352 - INFO - [Train] Epoch [1/50], Batch [490], Loss: 1.5247
+2025-08-19 15:17:54,669 - INFO - [Train] Epoch [1/50], Batch [500], Loss: 2.2001
+2025-08-19 15:17:55,966 - INFO - [Train] Epoch [1/50], Batch [510], Loss: 1.6454
+2025-08-19 15:17:57,494 - INFO - [Train] Epoch [1/50], Batch [520], Loss: 1.8754
+2025-08-19 15:17:58,888 - INFO - [Train] Epoch [1/50], Batch [530], Loss: 1.7694
+2025-08-19 15:18:00,128 - INFO - [Train] Epoch [1/50], Batch [540], Loss: 1.0325
+2025-08-19 15:18:01,487 - INFO - [Train] Epoch [1/50], Batch [550], Loss: 2.0287
+2025-08-19 15:18:02,923 - INFO - [Train] Epoch [1/50], Batch [560], Loss: 1.9334
+2025-08-19 15:18:04,195 - INFO - [Train] Epoch [1/50], Batch [570], Loss: 2.1407
+2025-08-19 15:18:05,476 - INFO - [Train] Epoch [1/50], Batch [580], Loss: 1.5317
+2025-08-19 15:18:06,802 - INFO - [Train] Epoch [1/50], Batch [590], Loss: 1.4719
+2025-08-19 15:18:08,200 - INFO - [Train] Epoch [1/50], Batch [600], Loss: 1.5418
+2025-08-19 15:18:09,411 - INFO - [Train] Epoch [1/50], Batch [610], Loss: 1.5128
+2025-08-19 15:18:10,627 - INFO - [Train] Epoch [1/50], Batch [620], Loss: 1.3536
+2025-08-19 15:18:12,129 - INFO - [Train] Epoch [1/50], Batch [630], Loss: 1.7105
+2025-08-19 15:18:13,490 - INFO - [Train] Epoch [1/50], Batch [640], Loss: 1.9516
+2025-08-19 15:18:14,823 - INFO - [Train] Epoch [1/50], Batch [650], Loss: 1.3277
+2025-08-19 15:18:16,045 - INFO - [Train] Epoch [1/50], Batch [660], Loss: 1.8058
+2025-08-19 15:18:17,382 - INFO - [Train] Epoch [1/50], Batch [670], Loss: 2.0538
+2025-08-19 15:18:18,795 - INFO - [Train] Epoch [1/50], Batch [680], Loss: 2.0821
+2025-08-19 15:18:20,083 - INFO - [Train] Epoch [1/50], Batch [690], Loss: 2.1591
+2025-08-19 15:18:21,369 - INFO - [Train] Epoch [1/50], Batch [700], Loss: 1.3390
+2025-08-19 15:18:22,747 - INFO - [Train] Epoch [1/50], Batch [710], Loss: 1.3254
+2025-08-19 15:18:24,084 - INFO - [Train] Epoch [1/50], Batch [720], Loss: 1.2127
+2025-08-19 15:18:25,408 - INFO - [Train] Epoch [1/50], Batch [730], Loss: 1.6798
+2025-08-19 15:18:26,666 - INFO - [Train] Epoch [1/50], Batch [740], Loss: 1.1033
+2025-08-19 15:18:27,975 - INFO - [Train] Epoch [1/50], Batch [750], Loss: 1.4256
+2025-08-19 15:18:29,269 - INFO - [Train] Epoch [1/50], Batch [760], Loss: 1.7774
+2025-08-19 15:18:30,660 - INFO - [Train] Epoch [1/50], Batch [770], Loss: 1.7266
+2025-08-19 15:18:32,013 - INFO - [Train] Epoch [1/50], Batch [780], Loss: 1.6617
+2025-08-19 15:18:33,323 - INFO - [Train] Epoch [1/50], Batch [790], Loss: 2.1526
+2025-08-19 15:18:35,305 - INFO - [Train] Epoch [1/50], Batch [800], Loss: 1.2535
+2025-08-19 15:18:37,024 - INFO - [Train] Epoch [1/50], Batch [810], Loss: 1.4716
+2025-08-19 15:18:38,484 - INFO - [Train] Epoch [1/50], Batch [820], Loss: 1.9757
+2025-08-19 15:18:39,869 - INFO - [Train] Epoch [1/50], Batch [830], Loss: 1.6355
+2025-08-19 15:18:41,187 - INFO - [Train] Epoch [1/50], Batch [840], Loss: 1.5922
+2025-08-19 15:18:42,545 - INFO - [Train] Epoch [1/50], Batch [850], Loss: 2.1468
+2025-08-19 15:18:43,998 - INFO - [Train] Epoch [1/50], Batch [860], Loss: 1.1742
+2025-08-19 15:18:45,434 - INFO - [Train] Epoch [1/50], Batch [870], Loss: 1.6121
+2025-08-19 15:18:46,794 - INFO - [Train] Epoch [1/50], Batch [880], Loss: 1.7208
+2025-08-19 15:18:48,031 - INFO - [Train] Epoch [1/50], Batch [890], Loss: 2.8073
+2025-08-19 15:18:49,424 - INFO - [Train] Epoch [1/50], Batch [900], Loss: 1.9303
+2025-08-19 15:18:50,772 - INFO - [Train] Epoch [1/50], Batch [910], Loss: 1.6556
+2025-08-19 15:18:52,003 - INFO - [Train] Epoch [1/50], Batch [920], Loss: 1.3152
+2025-08-19 15:18:53,318 - INFO - [Train] Epoch [1/50], Batch [930], Loss: 0.9085
+2025-08-19 15:18:54,676 - INFO - [Train] Epoch [1/50], Batch [940], Loss: 2.2723
+2025-08-19 15:18:55,940 - INFO - [Train] Epoch [1/50], Batch [950], Loss: 1.2913
+2025-08-19 15:18:57,267 - INFO - [Train] Epoch [1/50], Batch [960], Loss: 1.3322
+2025-08-19 15:18:58,636 - INFO - [Train] Epoch [1/50], Batch [970], Loss: 2.0535
+2025-08-19 15:19:00,016 - INFO - [Train] Epoch [1/50], Batch [980], Loss: 1.7910
+2025-08-19 15:19:01,301 - INFO - [Train] Epoch [1/50], Batch [990], Loss: 1.5503
+2025-08-19 15:19:02,785 - INFO - [Train] Epoch [1/50], Batch [1000], Loss: 1.1897
+2025-08-19 15:19:04,039 - INFO - [Train] Epoch [1/50], Batch [1010], Loss: 2.1562
+2025-08-19 15:19:05,357 - INFO - [Train] Epoch [1/50], Batch [1020], Loss: 1.4197
+2025-08-19 15:19:06,741 - INFO - [Train] Epoch [1/50], Batch [1030], Loss: 1.4873
+2025-08-19 15:19:08,021 - INFO - [Train] Epoch [1/50], Batch [1040], Loss: 1.4160
+2025-08-19 15:19:09,323 - INFO - [Train] Epoch [1/50], Batch [1050], Loss: 1.8799
+2025-08-19 15:19:10,638 - INFO - [Train] Epoch [1/50], Batch [1060], Loss: 2.8477
+2025-08-19 15:19:12,064 - INFO - [Train] Epoch [1/50], Batch [1070], Loss: 2.8656
+2025-08-19 15:19:13,395 - INFO - [Train] Epoch [1/50], Batch [1080], Loss: 1.8243
+2025-08-19 15:19:14,799 - INFO - [Train] Epoch [1/50], Batch [1090], Loss: 1.3085
+2025-08-19 15:19:16,091 - INFO - [Train] Epoch [1/50], Batch [1100], Loss: 3.0057
+2025-08-19 15:19:17,474 - INFO - [Train] Epoch [1/50], Batch [1110], Loss: 1.7504
+2025-08-19 15:19:18,785 - INFO - [Train] Epoch [1/50], Batch [1120], Loss: 0.9321
+2025-08-19 15:19:20,197 - INFO - [Train] Epoch [1/50], Batch [1130], Loss: 2.6084
+2025-08-19 15:19:21,523 - INFO - [Train] Epoch [1/50], Batch [1140], Loss: 2.1663
+2025-08-19 15:19:23,384 - INFO - [Train] Epoch [1/50], Batch [1150], Loss: 1.7071
+2025-08-19 15:19:24,658 - INFO - [Train] Epoch [1/50], Batch [1160], Loss: 1.5897
+2025-08-19 15:19:25,977 - INFO - [Train] Epoch [1/50], Batch [1170], Loss: 2.5871
+2025-08-19 15:19:27,259 - INFO - [Train] Epoch [1/50], Batch [1180], Loss: 1.4319
+2025-08-19 15:19:28,607 - INFO - [Train] Epoch [1/50], Batch [1190], Loss: 1.6765
+2025-08-19 15:19:29,841 - INFO - [Train] Epoch [1/50], Batch [1200], Loss: 1.2899
+2025-08-19 15:19:31,174 - INFO - [Train] Epoch [1/50], Batch [1210], Loss: 1.7963
+2025-08-19 15:19:32,590 - INFO - [Train] Epoch [1/50], Batch [1220], Loss: 2.3730
+2025-08-19 15:19:34,062 - INFO - [Train] Epoch [1/50], Batch [1230], Loss: 1.4118
+2025-08-19 15:19:35,637 - INFO - [Train] Epoch [1/50], Batch [1240], Loss: 2.1845
+2025-08-19 15:19:37,363 - INFO - [Train] Epoch [1/50], Batch [1250], Loss: 2.5194
+2025-08-19 15:19:39,053 - INFO - [Train] Epoch [1/50], Batch [1260], Loss: 2.3266
+2025-08-19 15:19:40,794 - INFO - [Train] Epoch [1/50], Batch [1270], Loss: 1.9454
+2025-08-19 15:19:42,403 - INFO - [Train] Epoch [1/50], Batch [1280], Loss: 0.9848
+2025-08-19 15:19:44,240 - INFO - [Train] Epoch [1/50], Batch [1290], Loss: 2.1935
+2025-08-19 15:19:45,665 - INFO - [Train] Epoch [1/50], Batch [1300], Loss: 2.0372
+2025-08-19 15:19:47,521 - INFO - [Train] Epoch [1/50], Batch [1310], Loss: 2.2979
+2025-08-19 15:19:48,955 - INFO - [Train] Epoch [1/50], Batch [1320], Loss: 1.3702
+2025-08-19 15:19:50,457 - INFO - [Train] Epoch [1/50], Batch [1330], Loss: 1.7452
+2025-08-19 15:19:52,025 - INFO - [Train] Epoch [1/50], Batch [1340], Loss: 1.3785
+2025-08-19 15:19:53,710 - INFO - [Train] Epoch [1/50], Batch [1350], Loss: 1.1937
+2025-08-19 15:19:55,347 - INFO - [Train] Epoch [1/50], Batch [1360], Loss: 1.3425
+2025-08-19 15:19:57,004 - INFO - [Train] Epoch [1/50], Batch [1370], Loss: 1.1508
+2025-08-19 15:19:58,574 - INFO - [Train] Epoch [1/50], Batch [1380], Loss: 0.8871
+2025-08-19 15:20:00,255 - INFO - [Train] Epoch [1/50], Batch [1390], Loss: 1.3765
+2025-08-19 15:20:01,873 - INFO - [Train] Epoch [1/50], Batch [1400], Loss: 0.9769
+2025-08-19 15:20:03,703 - INFO - [Train] Epoch [1/50], Batch [1410], Loss: 0.8067
+2025-08-19 15:20:05,416 - INFO - [Train] Epoch [1/50], Batch [1420], Loss: 1.9056
+2025-08-19 15:20:07,115 - INFO - [Train] Epoch [1/50], Batch [1430], Loss: 1.4694
+2025-08-19 15:20:08,736 - INFO - [Train] Epoch [1/50], Batch [1440], Loss: 1.0975
+2025-08-19 15:20:10,162 - INFO - [Train] Epoch [1/50], Batch [1450], Loss: 1.4922
+2025-08-19 15:20:11,546 - INFO - [Train] Epoch [1/50], Batch [1460], Loss: 1.9555
+2025-08-19 15:20:12,781 - INFO - [Train] Epoch [1/50], Batch [1470], Loss: 2.1109
+2025-08-19 15:20:14,330 - INFO - [Train] Epoch [1/50], Batch [1480], Loss: 1.8092
+2025-08-19 15:20:16,963 - INFO - [Train] Epoch [1/50], Batch [1490], Loss: 2.1646
+2025-08-19 15:20:18,818 - INFO - [Train] Epoch [1/50], Batch [1500], Loss: 2.1501
+2025-08-19 15:20:20,308 - INFO - [Train] Epoch [1/50], Batch [1510], Loss: 1.7415
+2025-08-19 15:20:21,899 - INFO - [Train] Epoch [1/50], Batch [1520], Loss: 1.9956
+2025-08-19 15:20:23,313 - INFO - [Train] Epoch [1/50], Batch [1530], Loss: 1.6295
+2025-08-19 15:20:24,931 - INFO - [Train] Epoch [1/50], Batch [1540], Loss: 1.4665
+2025-08-19 15:20:26,624 - INFO - [Train] Epoch [1/50], Batch [1550], Loss: 1.1696
+2025-08-19 15:20:27,918 - INFO - [Train] Epoch [1/50], Batch [1560], Loss: 1.7460
+2025-08-19 15:20:29,221 - INFO - [Train] Epoch [1/50], Batch [1570], Loss: 1.1607
+2025-08-19 15:20:30,636 - INFO - [Train] Epoch [1/50], Batch [1580], Loss: 1.9117
+2025-08-19 15:20:31,915 - INFO - [Train] Epoch [1/50], Batch [1590], Loss: 1.7638
+2025-08-19 15:20:33,328 - INFO - [Train] Epoch [1/50], Batch [1600], Loss: 1.1584
+2025-08-19 15:20:34,627 - INFO - [Train] Epoch [1/50], Batch [1610], Loss: 1.1728
+2025-08-19 15:20:35,990 - INFO - [Train] Epoch [1/50], Batch [1620], Loss: 1.3656
+2025-08-19 15:20:37,392 - INFO - [Train] Epoch [1/50], Batch [1630], Loss: 1.9441
+2025-08-19 15:20:38,654 - INFO - [Train] Epoch [1/50], Batch [1640], Loss: 1.5320
+2025-08-19 15:20:40,145 - INFO - [Train] Epoch [1/50], Batch [1650], Loss: 1.5000
+2025-08-19 15:20:41,531 - INFO - [Train] Epoch [1/50], Batch [1660], Loss: 1.7078
+2025-08-19 15:20:43,166 - INFO - [Train] Epoch [1/50], Batch [1670], Loss: 2.0467
+2025-08-19 15:20:44,628 - INFO - [Train] Epoch [1/50], Batch [1680], Loss: 2.0002
+2025-08-19 15:20:45,996 - INFO - [Train] Epoch [1/50], Batch [1690], Loss: 1.2893
+2025-08-19 15:20:47,317 - INFO - [Train] Epoch [1/50], Batch [1700], Loss: 1.6276
+2025-08-19 15:20:48,672 - INFO - [Train] Epoch [1/50], Batch [1710], Loss: 2.0848
+2025-08-19 15:20:50,127 - INFO - [Train] Epoch [1/50], Batch [1720], Loss: 1.8674
+2025-08-19 15:20:51,572 - INFO - [Train] Epoch [1/50], Batch [1730], Loss: 0.9069
+2025-08-19 15:20:53,075 - INFO - [Train] Epoch [1/50], Batch [1740], Loss: 1.8247
+2025-08-19 15:20:54,389 - INFO - [Train] Epoch [1/50], Batch [1750], Loss: 0.9619
+2025-08-19 15:20:55,747 - INFO - [Train] Epoch [1/50], Batch [1760], Loss: 1.3873
+2025-08-19 15:20:57,000 - INFO - [Train] Epoch [1/50], Batch [1770], Loss: 1.5256
+2025-08-19 15:20:58,319 - INFO - [Train] Epoch [1/50], Batch [1780], Loss: 1.4183
+2025-08-19 15:20:59,612 - INFO - [Train] Epoch [1/50], Batch [1790], Loss: 1.6460
+2025-08-19 15:21:00,840 - INFO - [Train] Epoch [1/50], Batch [1800], Loss: 1.3440
+2025-08-19 15:21:02,348 - INFO - [Train] Epoch [1/50], Batch [1810], Loss: 1.0012
+2025-08-19 15:21:03,669 - INFO - [Train] Epoch [1/50], Batch [1820], Loss: 0.5640
+2025-08-19 15:21:05,032 - INFO - [Train] Epoch [1/50], Batch [1830], Loss: 2.0614
+2025-08-19 15:21:06,412 - INFO - [Train] Epoch [1/50], Batch [1840], Loss: 1.4736
+2025-08-19 15:21:07,894 - INFO - [Train] Epoch [1/50], Batch [1850], Loss: 0.9974
+2025-08-19 15:21:09,228 - INFO - [Train] Epoch [1/50], Batch [1860], Loss: 1.3952
+2025-08-19 15:21:10,587 - INFO - [Train] Epoch [1/50], Batch [1870], Loss: 1.5413
+2025-08-19 15:21:12,020 - INFO - [Train] Epoch [1/50], Batch [1880], Loss: 1.7008
+2025-08-19 15:21:13,379 - INFO - [Train] Epoch [1/50], Batch [1890], Loss: 1.0078
+2025-08-19 15:21:14,690 - INFO - [Train] Epoch [1/50], Batch [1900], Loss: 0.8212
+2025-08-19 15:21:15,993 - INFO - [Train] Epoch [1/50], Batch [1910], Loss: 1.0025
+2025-08-19 15:21:17,360 - INFO - [Train] Epoch [1/50], Batch [1920], Loss: 1.2807
+2025-08-19 15:21:18,672 - INFO - [Train] Epoch [1/50], Batch [1930], Loss: 1.9495
+2025-08-19 15:21:20,038 - INFO - [Train] Epoch [1/50], Batch [1940], Loss: 2.1408
+2025-08-19 15:21:21,424 - INFO - [Train] Epoch [1/50], Batch [1950], Loss: 1.6729
+2025-08-19 15:21:22,660 - INFO - [Train] Epoch [1/50], Batch [1960], Loss: 2.0018
+2025-08-19 15:21:23,982 - INFO - [Train] Epoch [1/50], Batch [1970], Loss: 1.7876
+2025-08-19 15:21:25,566 - WARNING - [Training Epoch Resume] Epoch [1/50] Training Loss: 1.7105
+2025-08-19 15:21:48,348 - INFO - Model improved. Saved best_model.pth
+2025-08-19 15:21:48,349 - WARNING - [Test Epoch Resume] Epoch [1/50] Test Loss: 1.2833, Accuracy: 48.03%
+2025-08-19 15:21:48,444 - INFO - [Train] Epoch [2/50], Batch [0], Loss: 0.9706
+2025-08-19 15:21:49,375 - INFO - [Train] Epoch [2/50], Batch [10], Loss: 2.0047
+2025-08-19 15:21:50,519 - INFO - [Train] Epoch [2/50], Batch [20], Loss: 1.1242
+2025-08-19 15:21:51,514 - INFO - [Train] Epoch [2/50], Batch [30], Loss: 1.2582
+2025-08-19 15:21:52,507 - INFO - [Train] Epoch [2/50], Batch [40], Loss: 1.0724
+2025-08-19 15:21:53,617 - INFO - [Train] Epoch [2/50], Batch [50], Loss: 0.8720
+2025-08-19 15:21:54,719 - INFO - [Train] Epoch [2/50], Batch [60], Loss: 2.3256
+2025-08-19 15:21:55,681 - INFO - [Train] Epoch [2/50], Batch [70], Loss: 1.4428
+2025-08-19 15:21:56,652 - INFO - [Train] Epoch [2/50], Batch [80], Loss: 1.5875
+2025-08-19 15:21:57,720 - INFO - [Train] Epoch [2/50], Batch [90], Loss: 1.9945
+2025-08-19 15:21:58,646 - INFO - [Train] Epoch [2/50], Batch [100], Loss: 1.1255
+2025-08-19 15:21:59,718 - INFO - [Train] Epoch [2/50], Batch [110], Loss: 1.7831
+2025-08-19 15:22:00,819 - INFO - [Train] Epoch [2/50], Batch [120], Loss: 1.0767
+2025-08-19 15:22:01,902 - INFO - [Train] Epoch [2/50], Batch [130], Loss: 1.4338
+2025-08-19 15:22:03,046 - INFO - [Train] Epoch [2/50], Batch [140], Loss: 1.4463
+2025-08-19 15:22:04,235 - INFO - [Train] Epoch [2/50], Batch [150], Loss: 0.8814
+2025-08-19 15:22:05,558 - INFO - [Train] Epoch [2/50], Batch [160], Loss: 1.1869
+2025-08-19 15:22:06,744 - INFO - [Train] Epoch [2/50], Batch [170], Loss: 1.8657
+2025-08-19 15:22:07,879 - INFO - [Train] Epoch [2/50], Batch [180], Loss: 1.0250
+2025-08-19 15:22:09,209 - INFO - [Train] Epoch [2/50], Batch [190], Loss: 1.0553
+2025-08-19 15:22:10,404 - INFO - [Train] Epoch [2/50], Batch [200], Loss: 1.4469
+2025-08-19 15:22:11,632 - INFO - [Train] Epoch [2/50], Batch [210], Loss: 1.7289
+2025-08-19 15:22:13,226 - INFO - [Train] Epoch [2/50], Batch [220], Loss: 1.6857
+2025-08-19 15:22:14,725 - INFO - [Train] Epoch [2/50], Batch [230], Loss: 1.4731
+2025-08-19 15:22:15,961 - INFO - [Train] Epoch [2/50], Batch [240], Loss: 1.1919
+2025-08-19 15:22:16,923 - INFO - [Train] Epoch [2/50], Batch [250], Loss: 1.0573
+2025-08-19 15:22:17,968 - INFO - [Train] Epoch [2/50], Batch [260], Loss: 1.0997
+2025-08-19 15:22:19,046 - INFO - [Train] Epoch [2/50], Batch [270], Loss: 1.0350
+2025-08-19 15:22:20,074 - INFO - [Train] Epoch [2/50], Batch [280], Loss: 1.8733
+2025-08-19 15:22:21,041 - INFO - [Train] Epoch [2/50], Batch [290], Loss: 1.9182
+2025-08-19 15:22:22,100 - INFO - [Train] Epoch [2/50], Batch [300], Loss: 1.7503
+2025-08-19 15:22:23,021 - INFO - [Train] Epoch [2/50], Batch [310], Loss: 1.2237
+2025-08-19 15:22:23,985 - INFO - [Train] Epoch [2/50], Batch [320], Loss: 0.9001
+2025-08-19 15:22:25,155 - INFO - [Train] Epoch [2/50], Batch [330], Loss: 1.2370
+2025-08-19 15:22:26,147 - INFO - [Train] Epoch [2/50], Batch [340], Loss: 1.4163
+2025-08-19 15:22:27,298 - INFO - [Train] Epoch [2/50], Batch [350], Loss: 1.1372
+2025-08-19 15:22:28,402 - INFO - [Train] Epoch [2/50], Batch [360], Loss: 2.4419
+2025-08-19 15:22:29,525 - INFO - [Train] Epoch [2/50], Batch [370], Loss: 1.0732
+2025-08-19 15:22:30,569 - INFO - [Train] Epoch [2/50], Batch [380], Loss: 1.5062
+2025-08-19 15:22:32,020 - INFO - [Train] Epoch [2/50], Batch [390], Loss: 1.1743
+2025-08-19 15:22:33,747 - INFO - [Train] Epoch [2/50], Batch [400], Loss: 0.7774
+2025-08-19 15:22:35,359 - INFO - [Train] Epoch [2/50], Batch [410], Loss: 1.4928
+2025-08-19 15:22:37,051 - INFO - [Train] Epoch [2/50], Batch [420], Loss: 0.8833
+2025-08-19 15:22:38,643 - INFO - [Train] Epoch [2/50], Batch [430], Loss: 0.9796
+2025-08-19 15:22:40,181 - INFO - [Train] Epoch [2/50], Batch [440], Loss: 1.5932
+2025-08-19 15:22:41,723 - INFO - [Train] Epoch [2/50], Batch [450], Loss: 1.6271
+2025-08-19 15:22:43,072 - INFO - [Train] Epoch [2/50], Batch [460], Loss: 1.0007
+2025-08-19 15:22:44,557 - INFO - [Train] Epoch [2/50], Batch [470], Loss: 0.5878
+2025-08-19 15:22:46,160 - INFO - [Train] Epoch [2/50], Batch [480], Loss: 1.4288
+2025-08-19 15:22:47,880 - INFO - [Train] Epoch [2/50], Batch [490], Loss: 1.0558
+2025-08-19 15:22:49,333 - INFO - [Train] Epoch [2/50], Batch [500], Loss: 1.8826
+2025-08-19 15:22:50,886 - INFO - [Train] Epoch [2/50], Batch [510], Loss: 0.9892
+2025-08-19 15:22:52,379 - INFO - [Train] Epoch [2/50], Batch [520], Loss: 2.8395
+2025-08-19 15:22:53,922 - INFO - [Train] Epoch [2/50], Batch [530], Loss: 1.1530
+2025-08-19 15:22:55,540 - INFO - [Train] Epoch [2/50], Batch [540], Loss: 1.0635
+2025-08-19 15:22:57,679 - INFO - [Train] Epoch [2/50], Batch [550], Loss: 1.4210
+2025-08-19 15:22:59,749 - INFO - [Train] Epoch [2/50], Batch [560], Loss: 2.1828
+2025-08-19 15:23:01,351 - INFO - [Train] Epoch [2/50], Batch [570], Loss: 1.4766
+2025-08-19 15:23:03,013 - INFO - [Train] Epoch [2/50], Batch [580], Loss: 1.8380
+2025-08-19 15:23:05,036 - INFO - [Train] Epoch [2/50], Batch [590], Loss: 1.4974
+2025-08-19 15:23:06,786 - INFO - [Train] Epoch [2/50], Batch [600], Loss: 2.0170
+2025-08-19 15:23:08,169 - INFO - [Train] Epoch [2/50], Batch [610], Loss: 1.2403
+2025-08-19 15:23:09,960 - INFO - [Train] Epoch [2/50], Batch [620], Loss: 1.3038
+2025-08-19 15:23:11,629 - INFO - [Train] Epoch [2/50], Batch [630], Loss: 0.9755
+2025-08-19 15:23:13,075 - INFO - [Train] Epoch [2/50], Batch [640], Loss: 1.5598
+2025-08-19 15:23:14,692 - INFO - [Train] Epoch [2/50], Batch [650], Loss: 1.8658
+2025-08-19 15:23:16,346 - INFO - [Train] Epoch [2/50], Batch [660], Loss: 1.6363
+2025-08-19 15:23:17,744 - INFO - [Train] Epoch [2/50], Batch [670], Loss: 2.1456
+2025-08-19 15:23:19,446 - INFO - [Train] Epoch [2/50], Batch [680], Loss: 0.7913
+2025-08-19 15:23:21,072 - INFO - [Train] Epoch [2/50], Batch [690], Loss: 2.1458
+2025-08-19 15:23:22,637 - INFO - [Train] Epoch [2/50], Batch [700], Loss: 0.5869
+2025-08-19 15:23:24,291 - INFO - [Train] Epoch [2/50], Batch [710], Loss: 0.9440
+2025-08-19 15:23:25,631 - INFO - [Train] Epoch [2/50], Batch [720], Loss: 1.5848
+2025-08-19 15:23:26,920 - INFO - [Train] Epoch [2/50], Batch [730], Loss: 1.0797
+2025-08-19 15:23:28,277 - INFO - [Train] Epoch [2/50], Batch [740], Loss: 1.0468
+2025-08-19 15:23:29,743 - INFO - [Train] Epoch [2/50], Batch [750], Loss: 1.6517
+2025-08-19 15:23:30,998 - INFO - [Train] Epoch [2/50], Batch [760], Loss: 2.0556
+2025-08-19 15:23:32,387 - INFO - [Train] Epoch [2/50], Batch [770], Loss: 1.1492
+2025-08-19 15:41:44,562 - INFO - Start Training. lr=0.001 weight_decay= 0.0001
+2025-08-19 15:41:46,072 - INFO - [Train] Epoch [1/50], Batch [0], Loss: 2.4068
+2025-08-19 15:41:47,418 - INFO - [Train] Epoch [1/50], Batch [10], Loss: 2.3239
+2025-08-19 15:41:48,746 - INFO - [Train] Epoch [1/50], Batch [20], Loss: 2.3566
+2025-08-19 15:41:50,026 - INFO - [Train] Epoch [1/50], Batch [30], Loss: 2.1045
+2025-08-19 15:41:51,405 - INFO - [Train] Epoch [1/50], Batch [40], Loss: 2.5507
+2025-08-19 15:41:52,817 - INFO - [Train] Epoch [1/50], Batch [50], Loss: 2.3731
+2025-08-19 15:41:54,186 - INFO - [Train] Epoch [1/50], Batch [60], Loss: 2.0015
+2025-08-19 15:41:55,756 - INFO - [Train] Epoch [1/50], Batch [70], Loss: 2.1669
+2025-08-19 15:41:57,276 - INFO - [Train] Epoch [1/50], Batch [80], Loss: 2.0342
+2025-08-19 15:41:58,772 - INFO - [Train] Epoch [1/50], Batch [90], Loss: 2.0189
+2025-08-19 15:42:00,053 - INFO - [Train] Epoch [1/50], Batch [100], Loss: 1.7376
+2025-08-19 15:42:08,795 - INFO - Start Training. lr=0.001 weight_decay= 0.0001
+2025-08-19 15:42:09,468 - INFO - [Train] Epoch [1/50], Batch [0], Loss: 2.2557
+2025-08-19 15:42:10,986 - INFO - [Train] Epoch [1/50], Batch [10], Loss: 2.1968
+2025-08-19 15:42:12,271 - INFO - [Train] Epoch [1/50], Batch [20], Loss: 2.5548
+2025-08-19 15:42:19,122 - INFO - Start Training. lr=0.001 weight_decay= 0.0001
+2025-08-19 15:42:19,756 - INFO - [Train] Epoch [1/50], Batch [0], Loss: 2.3001
+2025-08-19 15:42:20,946 - INFO - [Train] Epoch [1/50], Batch [10], Loss: 2.0779
+2025-08-19 15:42:22,450 - INFO - [Train] Epoch [1/50], Batch [20], Loss: 2.1412
+2025-08-19 15:42:23,843 - INFO - [Train] Epoch [1/50], Batch [30], Loss: 1.9649
+2025-08-19 15:42:25,253 - INFO - [Train] Epoch [1/50], Batch [40], Loss: 2.2545
+2025-08-19 15:42:26,996 - INFO - [Train] Epoch [1/50], Batch [50], Loss: 2.2997
+2025-08-19 15:42:28,689 - INFO - [Train] Epoch [1/50], Batch [60], Loss: 2.1818
+2025-08-19 15:42:30,323 - INFO - [Train] Epoch [1/50], Batch [70], Loss: 2.2075
+2025-08-19 15:42:31,748 - INFO - [Train] Epoch [1/50], Batch [80], Loss: 1.9763
+2025-08-19 15:42:33,186 - INFO - [Train] Epoch [1/50], Batch [90], Loss: 1.8871
+2025-08-19 15:42:39,361 - INFO - Start Training. lr=0.001 weight_decay= 0.0001
+2025-08-19 15:42:39,992 - INFO - [Train] Epoch [1/50], Batch [0], Loss: 2.4064
+2025-08-19 15:42:41,232 - INFO - [Train] Epoch [1/50], Batch [10], Loss: 2.4574
+2025-08-19 15:42:42,511 - INFO - [Train] Epoch [1/50], Batch [20], Loss: 2.2730
+2025-08-19 15:42:43,961 - INFO - [Train] Epoch [1/50], Batch [30], Loss: 2.1727
+2025-08-19 15:42:45,242 - INFO - [Train] Epoch [1/50], Batch [40], Loss: 2.6221
+2025-08-19 15:42:46,434 - INFO - [Train] Epoch [1/50], Batch [50], Loss: 2.1819
+2025-08-19 15:42:47,762 - INFO - [Train] Epoch [1/50], Batch [60], Loss: 1.9222
+2025-08-19 15:42:49,084 - INFO - [Train] Epoch [1/50], Batch [70], Loss: 1.9726
+2025-08-19 15:42:50,363 - INFO - [Train] Epoch [1/50], Batch [80], Loss: 2.4437
+2025-08-19 15:42:51,694 - INFO - [Train] Epoch [1/50], Batch [90], Loss: 2.0815
+2025-08-19 15:42:52,970 - INFO - [Train] Epoch [1/50], Batch [100], Loss: 1.9105
+2025-08-19 15:42:54,231 - INFO - [Train] Epoch [1/50], Batch [110], Loss: 1.7008
+2025-08-19 15:42:55,504 - INFO - [Train] Epoch [1/50], Batch [120], Loss: 2.0613
+2025-08-19 15:42:56,781 - INFO - [Train] Epoch [1/50], Batch [130], Loss: 2.3073
+2025-08-19 15:42:58,144 - INFO - [Train] Epoch [1/50], Batch [140], Loss: 1.2556
+2025-08-19 15:42:59,469 - INFO - [Train] Epoch [1/50], Batch [150], Loss: 2.1184
+2025-08-19 15:43:00,676 - INFO - [Train] Epoch [1/50], Batch [160], Loss: 2.1658
+2025-08-19 15:43:02,172 - INFO - [Train] Epoch [1/50], Batch [170], Loss: 1.8632
+2025-08-19 15:43:03,691 - INFO - [Train] Epoch [1/50], Batch [180], Loss: 2.0018
+2025-08-19 15:43:05,040 - INFO - [Train] Epoch [1/50], Batch [190], Loss: 1.9750
+2025-08-19 15:43:06,379 - INFO - [Train] Epoch [1/50], Batch [200], Loss: 3.0803
+2025-08-19 15:43:07,739 - INFO - [Train] Epoch [1/50], Batch [210], Loss: 1.5799
+2025-08-19 15:43:09,267 - INFO - [Train] Epoch [1/50], Batch [220], Loss: 2.0658
+2025-08-19 15:43:10,917 - INFO - [Train] Epoch [1/50], Batch [230], Loss: 2.5333
+2025-08-19 15:43:12,562 - INFO - [Train] Epoch [1/50], Batch [240], Loss: 2.3075
+2025-08-19 15:43:14,029 - INFO - [Train] Epoch [1/50], Batch [250], Loss: 1.9605
+2025-08-19 15:43:15,637 - INFO - [Train] Epoch [1/50], Batch [260], Loss: 2.0182
+2025-08-19 15:43:17,134 - INFO - [Train] Epoch [1/50], Batch [270], Loss: 2.0770
+2025-08-19 15:43:18,374 - INFO - [Train] Epoch [1/50], Batch [280], Loss: 2.1414
+2025-08-19 15:43:19,552 - INFO - [Train] Epoch [1/50], Batch [290], Loss: 1.5463
+2025-08-19 15:43:20,978 - INFO - [Train] Epoch [1/50], Batch [300], Loss: 1.6110
+2025-08-19 15:43:22,349 - INFO - [Train] Epoch [1/50], Batch [310], Loss: 1.9917
+2025-08-19 15:43:23,765 - INFO - [Train] Epoch [1/50], Batch [320], Loss: 1.6526
+2025-08-19 15:43:25,222 - INFO - [Train] Epoch [1/50], Batch [330], Loss: 2.0720
+2025-08-19 15:43:26,742 - INFO - [Train] Epoch [1/50], Batch [340], Loss: 1.9404
+2025-08-19 15:43:28,042 - INFO - [Train] Epoch [1/50], Batch [350], Loss: 1.7701
+2025-08-19 15:43:29,526 - INFO - [Train] Epoch [1/50], Batch [360], Loss: 2.0946
+2025-08-19 15:43:31,001 - INFO - [Train] Epoch [1/50], Batch [370], Loss: 1.5851
+2025-08-19 15:43:32,291 - INFO - [Train] Epoch [1/50], Batch [380], Loss: 1.7800
+2025-08-19 15:43:33,835 - INFO - [Train] Epoch [1/50], Batch [390], Loss: 1.8923
+2025-08-19 15:43:35,228 - INFO - [Train] Epoch [1/50], Batch [400], Loss: 1.9502
+2025-08-19 15:43:36,861 - INFO - [Train] Epoch [1/50], Batch [410], Loss: 1.6021
+2025-08-19 15:43:38,536 - INFO - [Train] Epoch [1/50], Batch [420], Loss: 2.3089
+2025-08-19 15:43:39,950 - INFO - [Train] Epoch [1/50], Batch [430], Loss: 2.1924
+2025-08-19 15:43:41,474 - INFO - [Train] Epoch [1/50], Batch [440], Loss: 1.9773
+2025-08-19 15:43:42,944 - INFO - [Train] Epoch [1/50], Batch [450], Loss: 1.5155
+2025-08-19 15:43:44,398 - INFO - [Train] Epoch [1/50], Batch [460], Loss: 2.3007
+2025-08-19 15:43:45,805 - INFO - [Train] Epoch [1/50], Batch [470], Loss: 1.7659
+2025-08-19 15:43:47,378 - INFO - [Train] Epoch [1/50], Batch [480], Loss: 1.8536
+2025-08-19 15:43:49,071 - INFO - [Train] Epoch [1/50], Batch [490], Loss: 1.5757
+2025-08-19 15:43:50,547 - INFO - [Train] Epoch [1/50], Batch [500], Loss: 1.7041
+2025-08-19 15:43:52,184 - INFO - [Train] Epoch [1/50], Batch [510], Loss: 1.8707
+2025-08-19 15:43:53,460 - INFO - [Train] Epoch [1/50], Batch [520], Loss: 2.2561
+2025-08-19 15:43:54,886 - INFO - [Train] Epoch [1/50], Batch [530], Loss: 1.8598
+2025-08-19 15:43:56,539 - INFO - [Train] Epoch [1/50], Batch [540], Loss: 1.2550
+2025-08-19 15:43:57,946 - INFO - [Train] Epoch [1/50], Batch [550], Loss: 2.1256
+2025-08-19 15:43:59,374 - INFO - [Train] Epoch [1/50], Batch [560], Loss: 1.5376
+2025-08-19 15:44:00,895 - INFO - [Train] Epoch [1/50], Batch [570], Loss: 2.3842
+2025-08-19 15:44:02,490 - INFO - [Train] Epoch [1/50], Batch [580], Loss: 1.9185
+2025-08-19 15:44:04,087 - INFO - [Train] Epoch [1/50], Batch [590], Loss: 1.8020
+2025-08-19 15:44:05,691 - INFO - [Train] Epoch [1/50], Batch [600], Loss: 1.4927
+2025-08-19 15:44:07,229 - INFO - [Train] Epoch [1/50], Batch [610], Loss: 2.1422
+2025-08-19 15:44:08,704 - INFO - [Train] Epoch [1/50], Batch [620], Loss: 2.4321
+2025-08-19 15:44:10,131 - INFO - [Train] Epoch [1/50], Batch [630], Loss: 1.9944
+2025-08-19 15:44:11,450 - INFO - [Train] Epoch [1/50], Batch [640], Loss: 2.4439
+2025-08-19 15:44:12,982 - INFO - [Train] Epoch [1/50], Batch [650], Loss: 1.1937
+2025-08-19 15:44:14,479 - INFO - [Train] Epoch [1/50], Batch [660], Loss: 1.8226
+2025-08-19 15:44:15,798 - INFO - [Train] Epoch [1/50], Batch [670], Loss: 2.1375
+2025-08-19 15:44:17,260 - INFO - [Train] Epoch [1/50], Batch [680], Loss: 1.7809
