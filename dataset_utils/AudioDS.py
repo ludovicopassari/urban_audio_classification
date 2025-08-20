@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 class AudioDS(Dataset):
-    def __init__(self, data_path, folds, sample_rate, feature_ext_type:str, max_duration=4,training=False):
+    def __init__(self, data_path, folds, sample_rate, feature_ext_type:str, max_duration=4,training=False, aug=True):
         self._data_path = Path(data_path)
         self._folds = folds
         self._sample_rate = sample_rate
@@ -17,6 +17,7 @@ class AudioDS(Dataset):
         self._target_len = sample_rate * max_duration
         self._feature_ext_type = feature_ext_type
         self._metadata = self._load_metadata()
+        self._augmentation = aug
 
         #feature extraction 
         n_fft = 1024
@@ -35,13 +36,16 @@ class AudioDS(Dataset):
             norm="slaney",
             n_mels=n_mels,
             mel_scale="htk",
+            f_max= self._sample_rate /2,
+            f_min=0
+            
         )
         self.spectrogram_transform = torchaudio.transforms.Spectrogram(n_fft=512, hop_length=64)
         self.db_transform = None
 
         #data augmentation
-        self.time_masking = None
-        self.freq_masking = None
+        self.time_masking = torchaudio.transforms.TimeMasking(time_mask_param=40)
+        self.freq_masking = torchaudio.transforms.FrequencyMasking(freq_mask_param=40)
         self.pich_shifter= None
 
 
@@ -64,6 +68,17 @@ class AudioDS(Dataset):
         if self._target_len != waveform.shape[0]:
             waveform = self._fix_lenght(waveform)
 
+        if self._train:
+            
+            snr_db = torch.randint(low=10, high=20, size=(1,)).item()
+            waveform =self._add_noise_gaussian(waveform, snr_db)
+
+            rand_shift = torch.randint(low=1000, high=6400, size=(1,)).item()
+            waveform = self.random_shift(waveform,rand_shift)
+
+            #waveform = self.pich_shifter(waveform)
+
+
         waveform = waveform / waveform.abs().max()  # scala tra -1 e 1
       
 
@@ -78,9 +93,53 @@ class AudioDS(Dataset):
         #print("Valore massimo:", spec.max().item())
         #print("Valore minimo:", spec.min().item())
 
+        spec = torch.tensor(spec, dtype=torch.float32)
+
+        if self._augmentation:
+            spec = self.freq_masking(spec)
+            spec = self.time_masking(spec)
+
         return spec, label
+    
+
+    def random_shift(self, waveform, max_shift):
+        """Applica uno shift temporale casuale al waveform."""
+        shift = torch.randint(-max_shift, max_shift + 1, (1,)).item()
+        if shift == 0:
+            return waveform  # niente shift
         
+        # numero di canali e campioni
+        channels, samples = waveform.shape
+
+        if shift > 0:
+            # shift a destra
+            pad = torch.zeros((channels, shift), device=waveform.device)
+            waveform = torch.cat([pad, waveform[:, :-shift]], dim=1)
+        else:  # shift < 0
+            # shift a sinistra
+            pad = torch.zeros((channels, -shift), device=waveform.device)
+            waveform = torch.cat([waveform[:, -shift:], pad], dim=1)
         
+        return waveform
+    
+    def _add_noise_gaussian(self,speech, snr_db):
+        # Generiamo rumore casuale
+        noise = torch.randn_like(speech)
+
+        # Calcoliamo potenza segnale e rumore
+        power_speech = speech.pow(2).mean()
+        power_noise = noise.pow(2).mean()
+
+        # Calcoliamo il fattore di scala del rumore per ottenere SNR desiderato
+        snr = 10 ** (snr_db / 10)
+        scale = torch.sqrt(power_speech / (snr * power_noise))
+        noise_scaled = noise * scale
+
+        # Sommiamo rumore al segnale
+        noisy_speech = speech + noise_scaled
+        return noisy_speech
+
+
     def _load_sample(self, path):
 
         samples, sr = torchaudio.load(path) #[channels, samples]

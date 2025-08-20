@@ -34,7 +34,7 @@ train_dataset = AudioDS(data_path="dataset", folds=[1,2,3,4,5,6,7,8,9,10], sampl
 train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size,shuffle=True)
 
 
-for spec, label in train_loader:
+for batch_idx,(spec, label) in enumerate(train_loader):
 
     print(spec.shape)
     fig, axs = plt.subplots(2, 1, figsize=(12, 6))
