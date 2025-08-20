@@ -54,7 +54,8 @@ class UrbanSoundDataset(Dataset):
             waveform = waveform.mean(dim=0, keepdim=True) 
 
         if self.train and torch.rand(1).item() < 0.5:
-            waveform =self.add_noise_gaussian(waveform, 10)
+            snr_db = torch.randint(low=5, high=20, size=(1,)).item()
+            waveform =self.add_noise_gaussian(waveform, snr_db)
 
         spec = self.__preprocess_waveform(waveform, sample_rate, n_fft=2048)
 
@@ -96,7 +97,7 @@ class UrbanSoundDataset(Dataset):
         mel_spectrogram = self.mel_transform(waveform)
         mel_spectrogram_db = self.db_transform(mel_spectrogram)
 
-        if self.train:
+        if self.train and torch.rand(1).item() < 0.5:
             mel_spectrogram_db = self.time_masking(mel_spectrogram_db)
             mel_spectrogram_db = self.freq_masking(mel_spectrogram_db)
 
