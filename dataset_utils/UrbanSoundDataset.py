@@ -42,7 +42,7 @@ class UrbanSoundDataset(Dataset):
         return len(self.metadata)
 
     def __getitem__(self,idx):
-
+        
         row = self.metadata.iloc[idx]
         audio_path = self.dataset_dir / f"fold{row['fold']}" / row['slice_file_name']
 
@@ -50,13 +50,12 @@ class UrbanSoundDataset(Dataset):
         waveform, sample_rate = torchaudio.load(audio_path) #[channels, samples]
         label = row['classID']
 
+        
+
         if waveform.shape[0] > 1:
             waveform = waveform.mean(dim=0, keepdim=True) 
 
-        if self.train and torch.rand(1).item() < 0.5:
-            snr_db = torch.randint(low=5, high=20, size=(1,)).item()
-            waveform =self.add_noise_gaussian(waveform, snr_db)
-
+        
         spec = self.__preprocess_waveform(waveform, sample_rate, n_fft=2048)
 
         return spec, label
@@ -92,6 +91,11 @@ class UrbanSoundDataset(Dataset):
         else:
             waveform = waveform[:, :max_len]
             
+        if self.train and torch.rand(1).item() < 0.5:
+            snr_db = torch.randint(low=5, high=20, size=(1,)).item()
+            waveform =self.add_noise_gaussian(waveform, snr_db)
+            rand_shift = torch.randint(low=1000, high=6400, size=(1,)).item()
+            waveform = self.random_shift(waveform,rand_shift)
 
        
         mel_spectrogram = self.mel_transform(waveform)
@@ -123,3 +127,23 @@ class UrbanSoundDataset(Dataset):
         # Sommiamo rumore al segnale
         noisy_speech = speech + noise_scaled
         return noisy_speech
+
+    def random_shift(self, waveform, max_shift):
+        """Applica uno shift temporale casuale al waveform."""
+        shift = torch.randint(-max_shift, max_shift + 1, (1,)).item()
+        if shift == 0:
+            return waveform  # niente shift
+        
+        # numero di canali e campioni
+        channels, samples = waveform.shape
+
+        if shift > 0:
+            # shift a destra
+            pad = torch.zeros((channels, shift), device=waveform.device)
+            waveform = torch.cat([pad, waveform[:, :-shift]], dim=1)
+        else:  # shift < 0
+            # shift a sinistra
+            pad = torch.zeros((channels, -shift), device=waveform.device)
+            waveform = torch.cat([waveform[:, -shift:], pad], dim=1)
+        
+        return waveform
