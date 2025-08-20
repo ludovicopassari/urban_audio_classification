@@ -7,7 +7,7 @@ from pathlib import Path
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
-from dataset_utils import UrbanSoundDataset
+from dataset_utils.AudioDS import AudioDS
 
 from pathlib import Path
 from model.models import TorchModel
@@ -26,8 +26,8 @@ weight_decay = 1e-4
 dataset_dir = Path("dataset")
 
 # datasets for training and testing
-training_data = UrbanSoundDataset(dataset_dir, [1,2,3,4,5,6,7,8,9], train=True)
-test_data = UrbanSoundDataset(dataset_dir, [10])
+training_data = AudioDS(data_path="dataset", folds=[1,2,3,4,5,6,7,8,9], sample_rate=44100, feature_ext_type='linear-spectrogram', training=True)
+test_data = AudioDS(data_path="dataset", folds=[10], sample_rate=44100, feature_ext_type='linear-spectrogram', training=True)
 
 # dataloader to wrap dataset with an iterable
 train_loader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
@@ -38,7 +38,7 @@ device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print("Using device:", device)
 
 # instance of model
-model = TorchModel(input_shape=(200, 345, 1),num_classes=num_classes)
+model = TorchModel(input_shape=(128, 345, 1),num_classes=num_classes)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
