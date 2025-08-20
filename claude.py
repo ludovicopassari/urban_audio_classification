@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 def preprocess_waveform(
         waveform: torch.Tensor,
         sample_rate: int,
-        target_sample_rate: int = 22050,
+        target_sample_rate: int = 16000,
         duration: int = 4,
-        n_fft: int = 1024,
-        hop_length: int = 512,
-        n_mels: int = 128
+        n_fft: int = 512,
+        hop_length: int = 256,
+        n_mels: int = 256
     ):
         """
         Applica il preprocessing a un tensore waveform.
@@ -41,11 +41,8 @@ def preprocess_waveform(
         else:
             waveform = waveform[:, :max_len]
 
-        # 3. Gestione canali
-        if waveform.shape[0] == 1:
-            waveform = waveform.repeat(2, 1)  # duplica mono → stereo
-        elif waveform.shape[0] > 2:
-            waveform = waveform[:2, :]        # prendi i primi 2 canali
+        if waveform.shape[0] > 1:
+            waveform = waveform.mean(dim=0, keepdim=True) 
 
         # 4. Calcolo Mel-spectrogram
         mel_spectrogram = torchaudio.transforms.MelSpectrogram(
@@ -70,30 +67,30 @@ def preprocess_waveform(
 # Parametri dataset
 metadata_file = "./dataset/UrbanSound8K.csv"
 audio_dir = "./dataset"
-target_class = "drilling"#"car_horn"#"gun_shot"#"jackhammer"#"engine_idling"#"siren"#"street_music"#"children_playing"#"air_conditioner"#"dog_bark"   # Cambia qui la classe che vuoi visualizzare
+target_class = "engine_idling"#"car_horn"#"gun_shot"#"jackhammer"#"engine_idling"#"siren"#"street_music"#"children_playing"#"air_conditioner"#"dog_bark"   # Cambia qui la classe che vuoi visualizzare
 target_sample_rate = 22050
 
-# Parametri spettrogramma
-n_fft = 1024
-hop_length = 512
-n_mels = 64
 
-# Trasformazione MelSpectrogram
-mel_transform = torchaudio.transforms.MelSpectrogram(
-    sample_rate=target_sample_rate,
-    n_fft=n_fft,
-    hop_length=hop_length,
-    n_mels=n_mels,
-    window_fn=torch.hann_window,
-    f_max=8000,
-    f_min=20,
-)
 
-def plot_mel_spectrogram(spec, title, subplot_idx, total_plots):
+def plot_mel_spectrogram(spec, title, subplot_idx, total_plots, duration=4, sample_rate=22050, hop_length=256, n_mels=256):
     plt.subplot(2, 5, subplot_idx)  # 10 fold → 2 righe x 5 colonne
-    plt.imshow(spec.log2()[0,:,:].numpy(), cmap='magma', origin='lower', aspect='auto')
+    
+    # Calcolo asse del tempo (in secondi)
+    num_frames = spec.shape[-1]
+    time_axis = (num_frames * hop_length) / sample_rate
+    
+    # Mostra spettrogramma con assi uniformi
+    plt.imshow(
+        spec[0].numpy(),
+        cmap='magma',
+        origin='lower',
+        aspect='auto',
+        extent=[0, time_axis, 0, n_mels]
+    )
+    
     plt.title(title)
-    plt.axis("off")
+    plt.xlabel("Tempo (s)")
+    plt.ylabel("Mel bins")
 
 def main():
     metadata = pd.read_csv(metadata_file)

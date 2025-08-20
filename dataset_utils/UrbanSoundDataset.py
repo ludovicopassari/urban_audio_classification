@@ -11,15 +11,31 @@ from pathlib import Path
 class UrbanSoundDataset(Dataset):
     def __init__(self, dataset_dir: str, 
                 folds: List[int], 
-                sample_rate:int=16000,
+                sample_rate:int=22050,
                 max_duration:float = 4.0, 
-                train:bool=False )-> None:
+                train:bool=False,
+                n_mels=200, n_fft=2048, hop_length=256 )-> None:
+
         
         self.dataset_dir = Path(dataset_dir)
         self.folds = folds
         self.sample_rate = sample_rate
         self.metadata = self.__load_metadata()
         self.train = train
+        
+        self.mel_transform = torchaudio.transforms.MelSpectrogram(
+            sample_rate=sample_rate,
+            n_fft=n_fft,
+            hop_length=hop_length,
+            n_mels=n_mels,
+            power=2.0,
+            f_max= sample_rate / 2,
+            f_min=20,
+
+        )
+        self.time_masking = torchaudio.transforms.TimeMasking(time_mask_param=10)
+        self.freq_masking = torchaudio.transforms.FrequencyMasking(freq_mask_param=10)
+        self.db_transform = torchaudio.transforms.AmplitudeToDB()
 
         
     def __len__(self):
@@ -71,24 +87,15 @@ class UrbanSoundDataset(Dataset):
             waveform = torch.nn.functional.pad(waveform, (0, pad_len))
         else:
             waveform = waveform[:, :max_len]
-        
-        # 3. Gestione canali
-        if waveform.shape[0] == 1:
-            waveform = waveform.repeat(2, 1)  # duplica mono → stereo
-        elif waveform.shape[0] > 2:
-            waveform = waveform[:2, :]        # prendi i primi 2 canali
+            
 
-        # 4. Calcolo Mel-spectrogram
-        mel_spectrogram = torchaudio.transforms.MelSpectrogram(
-            sample_rate=target_sample_rate,
-            n_fft=n_fft,
-            hop_length=hop_length,
-            n_mels=n_mels,
-            window_fn=torch.hann_window,
-        )(waveform)
+       
+        mel_spectrogram = self.mel_transform(waveform)
+        mel_spectrogram_db = self.db_transform(mel_spectrogram)
 
-        # 5. Log-scaling
-        mel_spectrogram_db = torch.log1p(mel_spectrogram)
+        if self.train:
+            mel_spectrogram_db = self.time_masking(mel_spectrogram_db)
+            mel_spectrogram_db = self.freq_masking(mel_spectrogram_db)
 
         # 6. Normalizzazione [0,1]
         mel_db = (mel_spectrogram_db - mel_spectrogram_db.min()) / (mel_spectrogram_db.max() - mel_spectrogram_db.min())

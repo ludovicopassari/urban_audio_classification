@@ -26,8 +26,8 @@ weight_decay = 1e-4
 dataset_dir = Path("dataset")
 
 # datasets for training and testing
-training_data = UrbanSoundDataset(dataset_dir, [1,2,3,4,5,6,7,8,9], sample_rate=16000)
-test_data = UrbanSoundDataset(dataset_dir, [10],sample_rate=16000)
+training_data = UrbanSoundDataset(dataset_dir, [1,2,3,4,5,6,7,8,9], train=True)
+test_data = UrbanSoundDataset(dataset_dir, [10])
 
 # dataloader to wrap dataset with an iterable
 train_loader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
@@ -38,7 +38,7 @@ device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print("Using device:", device)
 
 # instance of model
-model = TorchModel(input_shape=(128, 173, 2),num_classes=num_classes)
+model = TorchModel(input_shape=(200, 345, 1),num_classes=num_classes)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
@@ -56,7 +56,7 @@ def train_model(model, train_loader, val_loader, num_epochs=50, learning_rate=0.
     
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-4)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=5, factor=0.5)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3, factor=0.5)
     
     best_val_acc = 0.0
     

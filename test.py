@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 dataset_dir = Path("dataset")
 
-training_data = UrbanSoundDataset(dataset_dir, [6], sample_rate=16000, train=True )
+training_data = UrbanSoundDataset(dataset_dir, [6], train=True )
 train_loader = DataLoader(training_data, batch_size=4, shuffle=True)
 
 for batch_idx, (waveforms, labels) in enumerate(train_loader):
