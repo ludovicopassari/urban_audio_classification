@@ -53,6 +53,9 @@ class UrbanSoundDataset(Dataset):
         if waveform.shape[0] > 1:
             waveform = waveform.mean(dim=0, keepdim=True) 
 
+        if self.train and torch.rand(1).item() < 0.5:
+            waveform =self.add_noise_gaussian(waveform, 10)
+
         spec = self.__preprocess_waveform(waveform, sample_rate, n_fft=2048)
 
         return spec, label
@@ -100,7 +103,22 @@ class UrbanSoundDataset(Dataset):
         # 6. Normalizzazione [0,1]
         mel_db = (mel_spectrogram_db - mel_spectrogram_db.min()) / (mel_spectrogram_db.max() - mel_spectrogram_db.min())
 
-        
-
         return mel_db
     
+
+    def add_noise_gaussian(self,speech, snr_db):
+        # Generiamo rumore casuale
+        noise = torch.randn_like(speech)
+
+        # Calcoliamo potenza segnale e rumore
+        power_speech = speech.pow(2).mean()
+        power_noise = noise.pow(2).mean()
+
+        # Calcoliamo il fattore di scala del rumore per ottenere SNR desiderato
+        snr = 10 ** (snr_db / 10)
+        scale = torch.sqrt(power_speech / (snr * power_noise))
+        noise_scaled = noise * scale
+
+        # Sommiamo rumore al segnale
+        noisy_speech = speech + noise_scaled
+        return noisy_speech
