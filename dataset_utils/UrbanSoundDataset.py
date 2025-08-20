@@ -36,6 +36,7 @@ class UrbanSoundDataset(Dataset):
         self.time_masking = torchaudio.transforms.TimeMasking(time_mask_param=10)
         self.freq_masking = torchaudio.transforms.FrequencyMasking(freq_mask_param=10)
         self.db_transform = torchaudio.transforms.AmplitudeToDB()
+        self.pich_shifter=torchaudio.transforms.PitchShift(sample_rate=sample_rate, n_steps=4)
 
         
     def __len__(self):
@@ -91,17 +92,22 @@ class UrbanSoundDataset(Dataset):
         else:
             waveform = waveform[:, :max_len]
             
-        if self.train and torch.rand(1).item() < 0.5:
-            snr_db = torch.randint(low=5, high=20, size=(1,)).item()
+        if self.train and torch.rand(1).item() < 0.6:
+            
+            snr_db = torch.randint(low=5, high=10, size=(1,)).item()
             waveform =self.add_noise_gaussian(waveform, snr_db)
+
             rand_shift = torch.randint(low=1000, high=6400, size=(1,)).item()
             waveform = self.random_shift(waveform,rand_shift)
+
+            waveform = self.pich_shifter(waveform)
 
        
         mel_spectrogram = self.mel_transform(waveform)
         mel_spectrogram_db = self.db_transform(mel_spectrogram)
+        #mel_spectrogram_db=torch.log1p(mel_spectrogram)
 
-        if self.train and torch.rand(1).item() < 0.5:
+        if self.train and torch.rand(1).item() < 0.2:
             mel_spectrogram_db = self.time_masking(mel_spectrogram_db)
             mel_spectrogram_db = self.freq_masking(mel_spectrogram_db)
 
