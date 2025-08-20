@@ -30,7 +30,7 @@ def plot_spectrogram(specgram, title=None, ylabel="freq_bin", ax=None):
 #test params
 batch_size=1
 
-train_dataset = AudioDS(data_path="dataset", folds=[1,2,3,4,5,6,7,8,9,10], sample_rate=44100, feature_ext_type='mel-spectrogram', training=True)
+train_dataset = AudioDS(data_path="dataset", folds=[1,2,3,4,5,6,7,8,9,10], sample_rate=44100, feature_ext_type='linear-spectrogram', training=True)
 train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size,shuffle=True)
 
 

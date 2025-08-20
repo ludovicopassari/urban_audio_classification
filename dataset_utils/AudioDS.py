@@ -40,7 +40,7 @@ class AudioDS(Dataset):
             f_min=0
             
         )
-        self.spectrogram_transform = torchaudio.transforms.Spectrogram(n_fft=512, hop_length=64)
+        self.spectrogram_transform = torchaudio.transforms.Spectrogram(n_fft=512)
         self.db_transform = None
 
         #data augmentation
@@ -68,7 +68,7 @@ class AudioDS(Dataset):
         if self._target_len != waveform.shape[0]:
             waveform = self._fix_lenght(waveform)
 
-        if self._train and self._augmentation and torch.rand(1).item() < 0.5:
+        if self._train and self._augmentation and torch.rand(1).item() < 0.3:
             
             snr_db = torch.randint(low=10, high=20, size=(1,)).item()
             waveform =self._add_noise_gaussian(waveform, snr_db)
@@ -95,7 +95,7 @@ class AudioDS(Dataset):
 
         spec = torch.tensor(spec, dtype=torch.float32)
 
-        if self._augmentation and self._train and torch.rand(1).item() < 0.6:
+        if self._augmentation and self._train and torch.rand(1).item() < 0.3:
             spec = self.freq_masking(spec)
             spec = self.time_masking(spec)
 
