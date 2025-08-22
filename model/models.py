@@ -11,38 +11,38 @@ class TorchModel(nn.Module):
         
         # Primo blocco convoluzionale
         self.conv1 = nn.Sequential(
-            nn.Conv2d(in_channels, 32, kernel_size=3, padding=0),
+            nn.Conv2d(in_channels, 32, kernel_size=7, padding=3),
             nn.BatchNorm2d(32),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),  # Riduce dimensioni di 2x
-            nn.Dropout2d(0.2)
+            nn.Dropout2d(0.1)
         )
         
         # Secondo blocco convoluzionale
         self.conv2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=3, padding=0),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),
-            nn.Dropout2d(0.2)
+            nn.Dropout2d(0.1)
         )
         
         # Terzo blocco convoluzionale
         self.conv3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=3, padding=0),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),
-            nn.Dropout2d(0.35)
+            nn.Dropout2d(0.15)
         )
         
         # Quarto blocco convoluzionale
         self.conv4 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=3, padding=0),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),
-            nn.Dropout2d(0.35)
+            nn.Dropout2d(0.15)
         )
         
         # Global Average Pooling per ridurre parametri

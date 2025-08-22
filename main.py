@@ -16,7 +16,7 @@ import logging
 import pandas as pd
 
 
-batch_size = 4
+batch_size = 32
 num_classes = 10
 learning_rate = 0.001
 num_epochs = 28
@@ -26,8 +26,8 @@ weight_decay = 1e-4
 dataset_dir = Path("dataset")
 
 # datasets for training and testing
-training_data = AudioDS(data_path="dataset", folds=[1,2,3,4,5,6,7,8,9], sample_rate=44100, feature_ext_type='linear-spectrogram', training=True)
-test_data = AudioDS(data_path="dataset", folds=[10], sample_rate=44100, feature_ext_type='linear-spectrogram')
+training_data = AudioDS(data_path="dataset", folds=[1,2,3,4,5,6,7,8,9], sample_rate=44100, feature_ext_type='mel-spectrogram', training=True)
+test_data = AudioDS(data_path="dataset", folds=[10], sample_rate=44100, feature_ext_type='mel-spectrogram')
 
 # dataloader to wrap dataset with an iterable
 train_loader = DataLoader(training_data, batch_size=batch_size, shuffle=True)

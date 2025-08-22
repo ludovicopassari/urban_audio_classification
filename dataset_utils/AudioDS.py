@@ -96,7 +96,7 @@ class AudioDS(Dataset):
         spec = torch.tensor(spec, dtype=torch.float32)
 
         if self._augmentation and self._train and torch.rand(1).item() < 0.3:
-            spec = self.freq_masking(spec)
+            #spec = self.freq_masking(spec)
             spec = self.time_masking(spec)
 
         return spec, label
