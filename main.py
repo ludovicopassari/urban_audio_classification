@@ -14,12 +14,14 @@ from model.models import TorchModel
 import os
 import logging
 import pandas as pd
+import matplotlib.pyplot as plt
+from datetime import datetime
 
 
 batch_size = 32
 num_classes = 10
 learning_rate = 0.001
-num_epochs = 28
+num_epochs = 50
 weight_decay = 1e-4
 
 #base dataset dir
@@ -43,7 +45,11 @@ model = TorchModel(input_shape=( 257, 690, 1),num_classes=num_classes)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
-
+# Estrai metriche
+train_acc_history = []
+val_acc_history   = []
+train_loss_history = []
+val_loss_history   = []
 
 def train_loop(dataloader, model, loss_fn, optimizer):
     pass
@@ -92,7 +98,7 @@ def train_model(model, train_loader, val_loader, num_epochs=50, learning_rate=0.
                 print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
         
         train_acc = 100 * train_correct / train_total
-        
+
         # Validation
         model.eval()
         val_loss = 0.0
@@ -119,6 +125,17 @@ def train_model(model, train_loader, val_loader, num_epochs=50, learning_rate=0.
         print(f'Train Loss: {train_loss/len(train_loader):.4f}, Train Acc: {train_acc:.2f}%')
         print(f'Val Loss: {val_loss/len(val_loader):.4f}, Val Acc: {val_acc:.2f}%')
         print('-' * 50)
+
+
+        #tracking values
+        train_acc_history.append(train_acc)
+        train_loss_history.append(train_loss/len(train_loader))
+
+        val_acc_history.append(val_acc)
+        val_loss_history.append(val_loss/len(val_loader))
+
+
+        
         
         # Save best model
         if val_acc > best_val_acc:
@@ -129,81 +146,37 @@ def train_model(model, train_loader, val_loader, num_epochs=50, learning_rate=0.
 
 
 
+model = train_model(model, train_loader, test_loader,num_epochs=num_epochs)
 
-""" def train_model(model, train_loader, test_loader, criterion, optimizer, device, num_epochs=50, patience=5):
+epochs= list(range(1, num_epochs + 1))
 
-    best_test_loss = float("inf")
-    patience_counter = 0
-    history = {"train_loss": [], "val_loss": [], "accuracy": []}
+# genera stringa con data e ora
+now = datetime.now()
+timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")  # esempio: 2025-08-22_15-30-45
 
-    logger.info(f"Start Training. lr={learning_rate} weight_decay= {weight_decay}")
-    for epoch in range(num_epochs):
+# --- Plot Accuracy ---
+plt.figure(figsize=(10,5))
+plt.plot(epochs, train_acc_history, label="Train Accuracy")
+plt.plot(epochs, val_acc_history, label="Validation Accuracy")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.title("Accuracy per Epoch")
+plt.legend()
+plt.grid(True)
+# salva il grafico con data e ora nel nome
+plt.savefig(f"accuracy_{timestamp}.png", dpi=300)
+plt.show()
 
-        model.train()
-        running_loss = 0.0
+# --- Plot Loss ---
+plt.figure(figsize=(10,5))
+plt.plot(epochs, train_loss_history, label="Train Loss")
+plt.plot(epochs, val_loss_history, label="Validation Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.title("Loss per Epoch")
+plt.legend()
+plt.grid(True)
 
-        for batch_idx, (spectrogram, labels) in enumerate(train_loader):
-            spectrogram, labels = spectrogram.to(device), labels.to(device)
-            
-            # forward
-            outputs = model(spectrogram)
-            loss = criterion(outputs, labels)
-            
-            # backward
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-                
-            running_loss += loss.item()
-            if batch_idx % 10 == 0:
-                logger.info(f"[Train] Epoch [{epoch+1}/{num_epochs}], Batch [{batch_idx}], Loss: {loss.item():.4f}")
-        
-        avg_train_loss = running_loss / len(train_loader)
-        logger.warning(f"[Training Epoch Resume] Epoch [{epoch+1}/{num_epochs}] Training Loss: {avg_train_loss:.4f}")
-
-        model.eval()
-        test_loss = 0.0
-        correct = 0
-        total = 0
-
-        with torch.no_grad():
-            for spettrogram, labels in test_loader:
-                spettrogram, labels = spettrogram.to(device), labels.to(device)
-                    
-                outputs = model(spettrogram)
-                loss = criterion(outputs, labels)
-                test_loss += loss.item()
-                    
-                # Predizioni
-                _, predicted = torch.max(outputs, dim=1)  # [batch]
-                total += labels.size(0)
-                correct += (predicted == labels).sum().item()
-            
-        avg_test_loss = test_loss / len(test_loader)
-        accuracy = 100 * correct / total
-
-        history["train_loss"].append(avg_train_loss)
-        history["val_loss"].append(avg_test_loss)
-        history["accuracy"].append(accuracy)
-        
-        # implements early stopping mechanism
-        if avg_test_loss < best_test_loss:
-            best_test_loss = avg_test_loss
-            patience_counter = 0
-            torch.save(model.state_dict(), "best_model.pth")
-            logger.info("Model improved. Saved best_model.pth")
-        else:
-            patience_counter += 1
-            logger.warning(f"No improvement. Patience counter: {patience_counter}/{patience}")
-
-            if patience_counter >= patience:
-                logger.warning("Early stopping triggered!")
-                logger.warning("Training Ended.")
-                break
-        
-        logger.warning(f"[Test Epoch Resume] Epoch [{epoch+1}/{num_epochs}] Test Loss: {avg_test_loss:.4f}, Accuracy: {accuracy:.2f}%")
-
-    logger.warning("Training Ended.") """
-
-model = train_model(model, train_loader, test_loader,num_epochs=50)
-
+# salva il grafico con data e ora nel nome
+plt.savefig(f"error_{timestamp}.png", dpi=300)
+plt.show()
